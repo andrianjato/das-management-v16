@@ -15,7 +15,7 @@ class DasPlanning(models.Model):
     resource_id_active = fields.Boolean('hr.employee', related='resource_id.active',
                                         store=True)
     resource_departure_date = fields.Date(string="Departure date", related='resource_id.departure_date')
-    resource_departure_reason = fields.Selection(string="Departure reason", related='resource_id.departure_reason')
+    resource_departure_reason = fields.Selection(string="Departure reason", related='resource_id.departure_reason_id')
 
     account_id = fields.Many2one('das.account', string="Account", required=True, tracking=True)
     start_date = fields.Date(string="Start date", default=fields.Date.today, required=True, tracking=True)
