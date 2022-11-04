@@ -7,7 +7,7 @@
     <field name="inherit_id" ref="project.edit_project"/>
     <field name="arch" type="xml">
 
-      <xpath expr="//div[@name='options_active']" position="before">
+      <xpath expr="//field[@name='user_id']" position="before">
         <h3>
           <field name="key" placeholder="Project Key"/>
         </h3>
