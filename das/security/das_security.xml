@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+  <data>
+
+    <record id="category_das" model="ir.module.category">
+      <field name="name">DAS</field>
+      <field name="sequence" eval="1"/>
+    </record>
+
+    <record id="group_das_transverse_manager" model="res.groups">
+      <field name="name">Transverse manager</field>
+      <field name="category_id" ref="category_das"/>
+      <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+    <record id="group_das_manager" model="res.groups">
+      <field name="name">Manager</field>
+      <field name="category_id" ref="category_das"/>
+      <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+    <record id="rule_hr_no_modification" model="ir.rule">
+      <field name="name">HR no modification</field>
+      <field ref="hr.model_hr_employee" name="model_id"/>
+      <field name="domain_force">[('department_id', '=', user.department_id.id)]</field>
+      <field name="perm_write" eval="0"/>
+      <field name="perm_create" eval="1"/>
+      <field name="perm_read" eval="1"/>
+      <field name="perm_unlink" eval="0"/>
+      <field name="groups" eval="[(4, ref('das.group_das_manager'))]"/>
+    </record>
+
+    <record id="rule_das_planning_view" model="ir.rule">
+      <field name="name">DAS Planning vue</field>
+      <field ref="das.model_das_planning" name="model_id"/>
+      <field name="domain_force">[('resource_id.department_id', '=', user.department_id.id)]</field>
+      <field name="perm_write" eval="0"/>
+      <field name="perm_create" eval="1"/>
+      <field name="perm_read" eval="1"/>
+      <field name="perm_unlink" eval="0"/>
+      <field name="groups" eval="[(4, ref('das.group_das_manager'))]"/>
+    </record>
+
+    <record id="rule_das_planning_date_view" model="ir.rule">
+      <field name="name">DAS Planning Date vue</field>
+      <field ref="das.model_das_planning_date" name="model_id"/>
+      <field name="domain_force">[('planning_id.resource_id.department_id', '=', user.department_id.id)]</field>
+      <field name="perm_write" eval="0"/>
+      <field name="perm_create" eval="1"/>
+      <field name="perm_read" eval="1"/>
+      <field name="perm_unlink" eval="0"/>
+      <field name="groups" eval="[(4, ref('das.group_das_manager'))]"/>
+    </record>
+
+    <record id="rule_category_type_hide_fic" model="ir.rule">
+      <field name="name">Category type Project FIC</field>
+      <field ref="das.model_das_category_type" name="model_id"/>
+      <field name="domain_force">[('type', '=', "FIC")]</field>
+      <field name="perm_write" eval="0"/>
+      <field name="perm_create" eval="0"/>
+      <field name="perm_read" eval="1"/>
+      <field name="perm_unlink" eval="0"/>
+      <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+    <record id="rule_category_type_all_permission" model="ir.rule">
+      <field name="name">Category type All permission</field>
+      <field ref="das.model_das_category_type" name="model_id"/>
+      <field name="domain_force">[('type', '!=', "FIC")]</field>
+      <field name="perm_write" eval="1"/>
+      <field name="perm_create" eval="1"/>
+      <field name="perm_read" eval="1"/>
+      <field name="perm_unlink" eval="1"/>
+      <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+    <record id="rule_category_hide_fic" model="ir.rule">
+      <field name="name">Category Project FIC</field>
+      <field ref="das.model_das_category" name="model_id"/>
+      <field name="domain_force">[('type_id.type', '=', "FIC")]</field>
+      <field name="perm_write" eval="0"/>
+      <field name="perm_create" eval="0"/>
+      <field name="perm_read" eval="1"/>
+      <field name="perm_unlink" eval="0"/>
+      <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+    <record id="rule_category_all_permission" model="ir.rule">
+      <field name="name">Category All permission</field>
+      <field ref="das.model_das_category" name="model_id"/>
+      <field name="domain_force">[('type_id.type', '!=', "FIC")]</field>
+      <field name="perm_write" eval="1"/>
+      <field name="perm_create" eval="1"/>
+      <field name="perm_read" eval="1"/>
+      <field name="perm_unlink" eval="1"/>
+      <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+    <record id="rule_account_reference_hide_fic" model="ir.rule">
+      <field name="name">Account Reference Project FIC</field>
+      <field ref="das.model_das_account_reference" name="model_id"/>
+      <field name="domain_force">[('type_id.type', '=', "FIC")]</field>
+      <field name="perm_write" eval="0"/>
+      <field name="perm_create" eval="0"/>
+      <field name="perm_read" eval="1"/>
+      <field name="perm_unlink" eval="0"/>
+      <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+    <record id="rule_account_reference_all_permission" model="ir.rule">
+      <field name="name">Account Reference All permission</field>
+      <field ref="das.model_das_account_reference" name="model_id"/>
+      <field name="domain_force">[('type_id.type', '!=', "FIC")]</field>
+      <field name="perm_write" eval="1"/>
+      <field name="perm_create" eval="1"/>
+      <field name="perm_read" eval="1"/>
+      <field name="perm_unlink" eval="1"/>
+      <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+    <record id="rule_account_hide_fic" model="ir.rule">
+      <field name="name">Account Project FIC</field>
+      <field ref="das.model_das_account" name="model_id"/>
+      <field name="domain_force">[('type_id.type', '=', "FIC")]</field>
+      <field name="perm_write" eval="0"/>
+      <field name="perm_create" eval="0"/>
+      <field name="perm_read" eval="1"/>
+      <field name="perm_unlink" eval="0"/>
+      <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+    <record id="rule_account_all_permission" model="ir.rule">
+      <field name="name">Account All permission</field>
+      <field ref="das.model_das_account" name="model_id"/>
+      <field name="domain_force">[('type_id.type', '!=', "FIC")]</field>
+      <field name="perm_write" eval="1"/>
+      <field name="perm_create" eval="1"/>
+      <field name="perm_read" eval="1"/>
+      <field name="perm_unlink" eval="1"/>
+      <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+    <record id="rule_project_hide_fic" model="ir.rule">
+      <field name="name">Hide Project FIC</field>
+      <field ref="das.model_project_project" name="model_id"/>
+      <field name="domain_force">[('key', '=', "fic_project")]</field>
+      <field name="perm_write" eval="0"/>
+      <field name="perm_create" eval="0"/>
+      <field name="perm_read" eval="1"/>
+      <field name="perm_unlink" eval="0"/>
+      <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+    <record id="rule_project_all_permission" model="ir.rule">
+      <field name="name">Project All permission</field>
+      <field ref="das.model_project_project" name="model_id"/>
+      <field name="domain_force">[('key', '!=', "fic_project")]</field>
+      <field name="perm_write" eval="1"/>
+      <field name="perm_create" eval="1"/>
+      <field name="perm_read" eval="1"/>
+      <field name="perm_unlink" eval="1"/>
+      <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+  </data>
+</odoo>

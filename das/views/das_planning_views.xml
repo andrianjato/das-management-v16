@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+    <record id="view_das_planning_planning_tree" model="ir.ui.view">
+      <field name="name">view.planning.das.planning.tree</field>
+      <field name="model">das.planning</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="resource_id"/>
+          <field name="start_date"/>
+          <field name="end_date"/>
+          <field name="account_label"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="view_das_planning_planning_gantt" model="ir.ui.view">
+      <field name="name">view.planning.das.planning.gantt</field>
+      <field name="model">das.planning</field>
+      <field name="arch" type="xml">
+        <gantt date_start="start_date"
+               date_stop="end_date"
+               default_scale="month"
+               scales="week,month,year"
+               string="Planning"
+               color="color"
+               default_group_by="resource_id"
+               display_unavailability="True"
+               total_row="True"
+               precision="{'day': 'hour:full', 'week': 'day:full', 'month': 'day:full', 'year': 'day:full'}">
+          <field name="account_id"/>
+        </gantt>
+      </field>
+    </record>
+
+    <record id="view_das_planning_planning_form" model="ir.ui.view">
+      <field name="name">view.planning.das.planning.form</field>
+      <field name="model">das.planning</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <group>
+                <field name="resource_id"/>
+                <field name="account_id"/>
+                <field name="project_id"/>
+                <field name="task_id"/>
+                <field name="date_delta" invisible="True"/>
+              </group>
+              <group>
+                <label for="start_date" string="Date"/>
+                <div class="o_row">
+                  <field name="start_date" widget="daterange"
+                         options='{"related_end_date": "end_date"}'/>
+                  <i class="fa fa-long-arrow-right mx-1" aria-label="Arrow icon" title="Arrow"/>
+                  <field name="end_date" widget="daterange"
+                         options='{"related_start_date": "start_date"}'/>
+                </div>
+                <label for="daily_hours">Daily hours</label>
+                <div class="o_row">
+                  <field name="daily_hours"/>
+                  <span>h/j</span>
+                </div>
+                <label for="total_hours">Total hours</label>
+                <div class="o_row">
+                  <field name="total_hours"/>
+                  <span>h</span>
+                </div>
+              </group>
+            </group>
+            <div class="text-right">
+              <button name="%(action_planning_division_wizard)d" string="Divide Planning" type="action"
+                      class="oe_highlight"
+                      attrs="{'invisible': ['|', ('id', '=', False), ('date_delta', '&lt;=', 2)]}"/>
+            </div>
+          </sheet>
+          <div class="oe_chatter">
+            <field name="message_follower_ids"/>
+            <field name="activity_ids"/>
+            <field name="message_ids"/>
+          </div>
+        </form>
+      </field>
+    </record>
+
+    <record id="view_das_planning_filter" model="ir.ui.view">
+      <field name="name">view.das.planning.filter</field>
+      <field name="model">das.planning</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="resource_reference"/>
+          <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
+          <filter name="no_fictif" string="No Fictif" domain="[('account_id.type_id.type', '!=', 'FIC')]"/>
+          <filter name="project_manager" string="Project manager" domain="[('job', 'ilike', 'CP')]"/>
+          <filter name="business_analyst" string="Business Analyst" domain="[('job', 'ilike', 'BA')]"/>
+          <filter name="integrator" string="Integrator" domain="[('job', 'ilike', 'ITG')]"/>
+          <filter name="developer" string="Developer" domain="[('job', 'ilike', 'ID')]"/>
+          <filter string="Today" name="filter_today"
+                  domain="[('start_date', '=', datetime.datetime.now().strftime('%Y-%m-%d')),
+                  ('end_date', '=', datetime.datetime.now().strftime('%Y-%m-%d'))]"/>
+          <group string="Group By">
+            <filter name="group_by_department" string="Department" context="{'group_by': 'department_id'}"/>
+            <filter name="group_by_resource" string="Resource" context="{'group_by': 'resource_id'}"/>
+            <filter name="group_by_account" string="Account" context="{'group_by': 'account_id'}"/>
+            <filter name="group_by_type" string="Type" context="{'group_by': 'type_id'}"/>
+            <filter name="group_by_date" string="Date de début" context="{'group_by': 'start_date'}"/>
+          </group>
+        </search>
+      </field>
+    </record>
+
+    <record id="action_das_planning_planning" model="ir.actions.act_window">
+      <field name="name">Planning</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">das.planning</field>
+      <field name="context">{"search_default_no_fictif":1}</field>
+      <field name="view_mode">gantt,form,tree</field>
+    </record>
+
+    <record id="action_das_planning_planning_employee" model="ir.actions.act_window">
+      <field name="name">Planning</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">das.planning</field>
+      <field name="view_mode">gantt,form,tree</field>
+    </record>
+
+  </data>
+</odoo>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+  <record id="view_edit_project_inherit" model="ir.ui.view">
+    <field name="name">view.edit.project.inherit</field>
+    <field name="model">project.project</field>
+    <field name="inherit_id" ref="project.edit_project"/>
+    <field name="arch" type="xml">
+
+      <xpath expr="//div[@name='options_active']" position="before">
+        <h3>
+          <field name="key" placeholder="Project Key"/>
+        </h3>
+      </xpath>
+      <xpath expr="//sheet" position="after">
+        <div class="oe_chatter">
+          <field name="message_follower_ids"/>
+          <field name="activity_ids"/>
+          <field name="message_ids"/>
+        </div>
+      </xpath>
+
+    </field>
+  </record>
+
+  <menuitem id="menu_das_planning_partner"
+            name="Partner"
+            parent="project.menu_project_config"
+            action="das_base.action_base_res_partner"
+            sequence="3"/>
+</odoo>

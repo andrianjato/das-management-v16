@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+    <menuitem id="menu_das_planning_root"
+              name="ePlanning-IT"
+              web_icon="das,static/description/icon.png"
+              sequence="10"/>
+
+    <menuitem id="menu_das_planning_planning"
+              name="Planning"
+              parent="menu_das_planning_root"
+              action="action_das_planning_planning"
+              sequence="15"/>
+
+    <menuitem id="menu_das_planning_availability"
+              name="Availability"
+              parent="menu_das_planning_root"
+              sequence="17"/>
+
+    <menuitem id="menu_das_planning_not_planned"
+              name="Day not planned"
+              parent="menu_das_planning_availability"
+              action="action_availability_filter_wizard"
+              sequence="18"/>
+
+    <menuitem id="menu_das_planning_intercontract"
+              name="Intercontract"
+              parent="menu_das_planning_availability"
+              action="action_das_planning_date_intercontrat"
+              sequence="19"/>
+
+    <menuitem id="menu_das_planning_date"
+              name="Planning Date"
+              parent="menu_das_planning_root"
+              action="action_das_planning_date"
+              sequence="18"/>
+
+    <menuitem id="menu_das_planning_date"
+              name="Consolidation"
+              parent="menu_das_planning_root"
+              action="action_das_planning_date"
+              sequence="22"/>
+
+    <menuitem id="menu_das_planning_configuration"
+              name="Configuration"
+              parent="menu_das_planning_root"
+              sequence="25"/>
+
+     <menuitem id="menu_das_config_settings"
+               name="Settings"
+               parent="menu_das_planning_configuration"
+               sequence="0"
+               action="action_das_config_settings"/>
+
+    <menuitem id="menu_das_planning_account"
+              name="Account"
+              parent="menu_das_planning_configuration"
+              action="action_das_planning_account"
+              sequence="26"/>
+
+    <menuitem id="menu_das_category"
+              name="Category"
+              parent="menu_das_planning_configuration"
+              action="action_das_planning_category"
+              sequence="27"/>
+
+    <menuitem id="menu_das_category_type"
+              name="Category type"
+              parent="menu_das_planning_configuration"
+              action="action_das_planning_category_type"
+              sequence="28"/>
+
+    <menuitem id="menu_das_locality"
+              name="Locality"
+              parent="menu_das_planning_configuration"
+              action="action_das_planning_locality"
+              sequence="29"/>
+
+    <menuitem id="menu_das_order"
+              name="Account reference"
+              parent="menu_das_planning_configuration"
+              action="das.action_das_account_reference"
+              sequence="29"/>
+<menuitem id="menu_das_fictional_batch"
+              name="Fictional Batch"
+              parent="menu_das_planning_configuration"
+              action="das.action_das_fictional_batch"
+              sequence="30"/>
+
+    <menuitem id="menu_das_other_models"
+              name="Other models"
+              parent="menu_das_planning_configuration"
+              sequence="32"/>
+
+    <menuitem id="menu_das_fictional"
+              name="Fictional planning"
+              parent="menu_das_planning_configuration"
+              action="action_das_fictional"
+              sequence="33"/>
+
+    <menuitem id="menu_das_partner"
+              name="Partner"
+              parent="menu_das_other_models"
+              action="das_base.action_base_res_partner"
+              sequence="32"/>
+
+    <menuitem id="menu_das_employee"
+              name="Employee"
+              parent="menu_das_other_models"
+              action="hr.open_view_employee_list_my"
+              sequence="35"/>
+
+    <menuitem id="menu_das_project"
+              name="Project"
+              parent="menu_das_other_models"
+              action="project.open_view_project_all_config"
+              sequence="40"/>
+
+
+  </data>
+</odoo>

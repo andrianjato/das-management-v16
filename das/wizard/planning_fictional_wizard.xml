@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="view_planning_fictional_wizard" model="ir.ui.view">
+    <field name="name">view_planning_fictional_wizard</field>
+    <field name="model">planning.fictional.wizard</field>
+    <field name="arch" type="xml">
+      <form string="Fictional plannings">
+        <sheet>
+          <group>
+            <group colspan="4" style="text-align:center;">
+              <span colspan="4" nolabel="1">This wizard will generate " Fictional Planning " for all selected
+                employee(s)
+                based on the dates.
+              </span>
+            </group>
+            <group colspan="4">
+              <group>
+                <field name="batch_id"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+              </group>
+              <group>
+                <field name="department_id"/>
+              </group>
+            </group>
+
+            <group colspan="4">
+              <separator string="Resources" colspan="4"/>
+              <newline/>
+              <field name="resource_ids" nolabel="1"/>
+            </group>
+          </group>
+          <footer>
+            <button icon="fa-cogs" string="Generate" name="generate_fictional_planning" type="object"
+                    class="oe_highlight" confirm="Are you sure to apply?"/>
+            <button string="Cancel" class="btn btn-secondary" special="cancel"/>
+            <t t-if="widget.state.scale in formats" t-esc="slot.format(formats[widget.state.scale])"/>
+            <small t-else="">
+              <b t-esc="slot.format('k')"/>
+              <span class="d-block d-xl-inline-block" t-esc="slot.format('a')"/>
+            </small>
+          </footer>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record id="action_das_planning_fictional" model="ir.actions.act_window">
+    <field name="name">Generate Planning</field>
+    <field name="res_model">planning.fictional.wizard</field>
+    <field name="view_mode">form</field>
+    <field name="view_id" ref="view_planning_fictional_wizard"/>
+    <field name="target">new</field>
+  </record>
+
+</odoo>

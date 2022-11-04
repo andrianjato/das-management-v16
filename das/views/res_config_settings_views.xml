@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="view_das_config_setting_inherit" model="ir.ui.view">
+    <field name="name">view.das.config.setting.inherit</field>
+    <field name="model">res.config.settings</field>
+    <field name="priority" eval="5"/>
+    <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+    <field name="arch" type="xml">
+      <xpath expr="//div[hasclass('settings')]" position="inside">
+        <div class="app_settings_block" data-string="ePlanning-IT" string="ePlanning-IT" data-key="das">
+          <h2>ePlanning-IT</h2>
+          <div class="row mt16 ml16 o_settings_container" name="das_setting_container">
+            <div class="o_setting_box" id="billable_goal" style="width:120px;">
+              <div class="o_setting_left_pane"/>
+              <span class="o_form_label">Billable goal</span>
+              <div class="text-muted o_row">
+                <field name="billable_goal"/>
+                <span>%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </xpath>
+    </field>
+  </record>
+
+  <record id="action_das_config_settings" model="ir.actions.act_window">
+    <field name="name">Settings</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">res.config.settings</field>
+    <field name="view_mode">form</field>
+    <field name="target">inline</field>
+    <field name="context">{'module' : 'das', 'bin_size': False}</field>
+  </record>
+
+</odoo>

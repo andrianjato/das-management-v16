@@ -1,0 +1,30 @@
+<odoo>
+  <data noupdate="1">
+    <!--         for Type-->
+    <record id="das_fictional_type" model="das.category.type">
+      <field name="type">FIC</field>
+      <field name="is_intercontrat">True</field>
+      <field name="description">for account fictional</field>
+    </record>
+    <!-- for category -->
+    <record id="das_fictional_category" model="das.category">
+      <field name="type_id" model="das.category.type" search="[('type','=','FIC')]"/>
+      <field name="category_project">Fictional</field>
+    </record>
+    <!-- for reference -->
+    <record id="das_fictional_reference" model="das.account.reference">
+      <field name="reference">Fic Account ref</field>
+      <field name="category_id" model="das.category" search="[('category_project','=','Fictional')]"/>
+      <field name="budget">0</field>
+    </record>
+    <record id="das_fictional_project" model="project.project">
+      <field name="name">Fictional project</field>
+      <field name="key">fic_project</field>
+    </record>
+    <!--         for account-->
+    <record id="das_fictional_account" model="das.account">
+      <field name="reference_id" model="das.account.reference" search="[('reference','=','Fic Account ref')]"/>
+      <field name="project_id" model="project.project" search="[('name','=','Fictional project')]"/>
+    </record>
+  </data>
+</odoo>

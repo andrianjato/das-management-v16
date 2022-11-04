@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+    <record id="view_das_planning_account_tree" model="ir.ui.view">
+      <field name="name">view.planning.das.account.tree</field>
+      <field name="model">das.account</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="reference"/>
+          <field name="type_id"/>
+          <field name="description"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="view_das_planning_account_form" model="ir.ui.view">
+      <field name="name">view.planning.das.account.form</field>
+      <field name="model">das.account</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <div class="oe_button_box" name="button_box" attrs="{'invisible': [('id', '=', False)]}">
+              <button class="oe_stat_button" name="get_account_planning" type="object" icon="fa-calendar">
+                <field string="Plannings" name="planning_count" widget="statinfo"/>
+              </button>
+            </div>
+            <div class="text-center">
+              <h3>
+                <field name="reference" attrs="{'invisible': [('id', '=', False)]}"/>
+              </h3>
+            </div>
+            <group>
+              <group>
+                <field name="project_id"/>
+                <field name="key"/>
+                <field name="reference_id"/>
+                <field name="category_id"/>
+                <field name="type_id"/>
+              </group>
+              <group>
+                <field name="responsible_id"/>
+                <field name="techno"/>
+                <field name="department_id"/>
+                <label for="start_date" string="Date"/>
+                <div class="o_row">
+                  <field name="start_date" widget="daterange"
+                         options='{"related_end_date": "end_date"}'/>
+                  <i class="fa fa-long-arrow-right mx-1" aria-label="Arrow icon" title="Arrow"/>
+                  <field name="end_date" widget="daterange"
+                         options='{"related_start_date": "start_date"}'/>
+                </div>
+              </group>
+            </group>
+            <notebook>
+              <page string="Description">
+                <field name="description"/>
+              </page>
+            </notebook>
+          </sheet>
+          <div class="oe_chatter">
+            <field name="message_follower_ids"/>
+            <field name="activity_ids"/>
+            <field name="message_ids"/>
+          </div>
+        </form>
+      </field>
+    </record>
+
+    <record id="action_das_planning_account" model="ir.actions.act_window">
+      <field name="name">Account</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">das.account</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+  </data>
+</odoo>

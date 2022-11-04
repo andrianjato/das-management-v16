@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+  <record id="view_edit_project_inherit" model="ir.ui.view">
+    <field name="name">view.edit.project.inherit</field>
+    <field name="model">project.project</field>
+    <field name="inherit_id" ref="project.edit_project"/>
+    <field name="arch" type="xml">
+
+      <xpath expr="//button[@name='attachment_tree_view']" position="before">
+        <button class="oe_stat_button" name="get_project_account" type="object" icon="fa-folder">
+          <field string="Accounts" name="account_count" widget="statinfo"/>
+        </button>
+      </xpath>
+
+    </field>
+  </record>
+
+  <record id="view_view_project_inherit" model="ir.ui.view">
+    <field name="name">view.view.project.inherit</field>
+    <field name="model">project.project</field>
+    <field name="inherit_id" ref="project.view_project"/>
+    <field name="arch" type="xml">
+
+      <xpath expr="//field[@name='name']" position="before">
+        <field name="key"/>
+      </xpath>
+
+    </field>
+  </record>
+
+</odoo>

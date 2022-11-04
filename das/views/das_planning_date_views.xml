@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+    <record id="view_das_planning_date_tree" model="ir.ui.view">
+      <field name="name">view.planning.das.date.tree</field>
+      <field name="model">das.planning.date</field>
+      <field name="arch" type="xml">
+        <tree default_order="date desc" string="Planning" delete="0" multi_edit="1"
+              sample="1">
+          <field name="resource_id" class="font-weight-bold" optional="show"/>
+          <field name="job_id" optional="show"/>
+          <field name="job_id_type" optional="show"/>
+          <field name="department_id" optional="show"/>
+          <field name="planning_id" optional="show"/>
+          <field name="account_id" class="font-weight-bold" optional="show"/>
+          <field name="category_id" class="font-weight-bold" optional="show"/>
+          <field name="project_id" optional="show"/>
+          <field name="partner_id" optional="hide"/>
+          <field name="task_id" optional="hide"/>
+          <field name="date" class="font-weight-bold" optional="show"/>
+          <field name="is_global_leave" optional="hide"/>
+          <field name="daily_hours" optional="show"/>
+          <field name="available_hour" optional="hide"/>
+          <field name="available_day" optional="show"/>
+          <field name="type_id" optional="hide"/>
+          <field name="is_intercontrat" optional="hide"/>
+          <field name="is_no_counting" optional="hide"/>
+          <field name="fac_hours" optional="show"/>
+          <field name="pnf_hours" optional="show"/>
+          <field name="int_hours" optional="show"/>
+          <field name="rh_hours" optional="show"/>
+          <field name="avv_hours" optional="show"/>
+          <field name="mgt_hours" optional="show"/>
+          <field name="prv_hours" optional="show"/>
+          <field name="planned_days" optional="show"/>
+          <field name="daily_not_planned" optional="show"/>
+          <field name="hours_not_planned" optional="hide"/>
+          <field name="req" optional="hide"/>
+          <field name="jreq" optional="show"/>
+          <field name="ic" optional="show"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="view_das_planning_date_pivot" model="ir.ui.view">
+      <field name="name">view.planning.das.date.pivot</field>
+      <field name="model">das.planning.date</field>
+      <field name="arch" type="xml">
+        <pivot string="Planning per date" disable_linking="True" sample="1">
+          <field name="resource_id"/>
+          <field name="department_id"/>
+          <field name="planning_id"/>
+          <field name="daily_hours"/>
+          <field name="available_day"/>
+          <field name="account_id"/>
+          <field name="project_id"/>
+          <field name="task_id"/>
+          <field name="daily_planned"/>
+          <field name="daily_not_planned"/>
+          <field name="hours_not_planned"/>
+          <field name="req"/>
+          <field name="jreq"/>
+          <field name="available_hour"/>
+          <field name="available_day"/>
+          <field name="date"/>
+        </pivot>
+      </field>
+    </record>
+
+    <record id="view_das_planning_date_gantt" model="ir.ui.view">
+      <field name="name">view.das.planning.date.gantt</field>
+      <field name="model">das.planning.date</field>
+      <field name="arch" type="xml">
+        <gantt date_start="date"
+               date_stop="date"
+               default_scale="month"
+               scales="day,week,month,year"
+               string="Planning Date"
+               color="color"
+               default_group_by="resource_id"
+               precision="{'day': 'hour:full', 'week': 'day:full', 'month': 'day:full', 'year': 'day:full'}">
+        </gantt>
+      </field>
+    </record>
+
+    <record id="view_das_planning_date_graph" model="ir.ui.view">
+      <field name="name">view.das.planning.date.graph</field>
+      <field name="model">das.planning.date</field>
+      <field name="arch" type="xml">
+        <graph string="Intercontract en jours par centres" type="line">
+          <field name="date" interval="week"/>
+          <field name="department_id"/>
+        </graph>
+      </field>
+    </record>
+
+    <record id="view_das_planning_date_graph" model="ir.ui.view">
+      <field name="name">view.das.planning.date.graph</field>
+      <field name="model">das.planning.date</field>
+      <field name="arch" type="xml">
+        <graph type="line">
+          <field name="date" interval="week"/>
+          <field name="department_id"/>
+        </graph>
+      </field>
+    </record>
+
+    <record id="view_das_planning_date_graph_job" model="ir.ui.view">
+      <field name="name">view.das.planning.date.graph.job</field>
+      <field name="model">das.planning.date</field>
+      <field name="arch" type="xml">
+        <graph type="pie">
+          <field name="department_id"/>
+        </graph>
+      </field>
+    </record>
+
+    <record id="view_das_planning_date_dashboard" model="ir.ui.view">
+      <field name="name">view.das.planning.date.dashboard</field>
+      <field name="model">das.planning.date</field>
+      <field name="mode">primary</field>
+      <field name="arch" type="xml">
+        <dashboard sample="1">
+          <group>
+            <aggregate name="resources" string="Resource" field="total_resource" group_operator="max"/>
+            <aggregate name="nb_working_days" string="Nb working Date" field="date_timestamp"
+                       group_operator="count_distinct"/>
+            <formula name="capacity_days" string="Capacity in days"
+                     value="record.resources * record.nb_working_days"/>
+            <formula name="billable_goal" string="Billable Goal"
+                     value="" value_label=""/>
+            <aggregate name="total_billable_days" string="Total billable days" field="id" group_operator="count"
+                       domain="[('planning_id.account_id.type_id', '=', 'FAC')]"/>
+            <formula name="to_fill_days" string="To fill days"
+                     value=""/>
+            <aggregate name="intercontract_days" string="Intercontract days" field="id" group_operator="count"
+                       domain="[('is_intercontrat', '=', True)]" value_label=""/>
+          </group>
+          <group>
+            <group>
+              <view type="graph" ref="das.view_das_planning_date_graph"/>
+            </group>
+          </group>
+        </dashboard>
+      </field>
+    </record>
+
+    <record id="view_das_planning_date_filter" model="ir.ui.view">
+      <field name="name">view.das.planning.date.filter</field>
+      <field name="model">das.planning.date</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="resource_name"/>
+          <filter name="is_intertcontract" string="Intercontract" domain="[('is_intercontrat', '=', True)]"/>
+          <filter name="date_current_month" string="Current month"
+                  domain="[('date','&lt;',(context_today()+relativedelta(months=1)).strftime('%%Y-%%m-01')),
+                  ('date','&gt;=',time.strftime('%%Y-%%m-01'))]"/>
+          <group string="Group By">
+            <filter name="group_by_resource" string="Resource" context="{'group_by': 'resource_id'}"/>
+            <filter name="group_by_date" string="Date" context="{'group_by': 'date'}"/>
+            <filter name="group_by_department" string="Department" context="{'group_by': 'department_id'}"/>
+          </group>
+        </search>
+      </field>
+    </record>
+
+    <record id="action_das_planning_date" model="ir.actions.act_window">
+      <field name="name">Planning per date</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">das.planning.date</field>
+      <field name="context">{"search_default_date_current_month":1}</field>
+      <field name="view_mode">tree,pivot,gantt,dashboard</field>
+    </record>
+
+    <record id="action_das_planning_date_intercontrat" model="ir.actions.act_window">
+      <field name="name">Intercontract</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">das.planning.date</field>
+      <field name="context">{"search_default_is_intertcontract":1}</field>
+      <field name="view_mode">gantt</field>
+    </record>
+
+    <record id="action_das_planning_date_dashboard" model="ir.actions.act_window">
+      <field name="name">Intercontract</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">das.planning.date</field>
+      <field name="context">{"search_default_date_current_month":1}</field>
+      <field name="view_mode">dashboard</field>
+    </record>
+
+  </data>
+</odoo>

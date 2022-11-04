@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+    <record id="view_res_availability_tree" model="ir.ui.view">
+      <field name="name">view.res.availability.tree</field>
+      <field name="model">res.availability</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="resource_id"/>
+          <field name="start_date"/>
+          <field name="end_date"/>
+          <field name="hour"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="view_res_availability_form" model="ir.ui.view">
+      <field name="name">view.res.availability.form</field>
+      <field name="model">res.availability</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <div class="oe_button_box" name="button_box">
+              <button
+                      name="planning_available_resource"
+                      type="object"
+                      string="Planning"
+                      class="oe_stat_button"
+                      icon="fa-calendar">
+              </button>
+            </div>
+            <group>
+              <field name="resource_id"/>
+              <field name="start_date"/>
+              <field name="end_date"/>
+              <field name="hour"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="view_res_availability_gantt" model="ir.ui.view">
+      <field name="name">view.res.availability.gantt</field>
+      <field name="model">res.availability</field>
+      <field name="arch" type="xml">
+        <gantt
+                date_start="start_date"
+                date_stop="end_date"
+                default_scale="month"
+                scales="week,month"
+                string="Availability"
+                color="hour"
+                default_group_by="resource_id"
+                precision="{'day': 'hour:full', 'week': 'day:full', 'month': 'day:full', 'year': 'day:full'}">
+          <field name="hour"/>
+        </gantt>
+      </field>
+    </record>
+
+    <record id="view_res_availability_search" model="ir.ui.view">
+      <field name="name">view.res.availability.search</field>
+      <field name="model">res.availability</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="resource_id"/>
+          <group string="Group By">
+            <filter name="group_by_resource" string="Resource" context="{'group_by': 'resource_id'}"/>
+            <filter name="group_by_department" string="Department" context="{'group_by': 'department_id'}"/>
+            <filter name="group_by_job" string="Job" context="{'group_by': 'job_id'}"/>
+          </group>
+        </search>
+      </field>
+    </record>
+
+  </data>
+</odoo>

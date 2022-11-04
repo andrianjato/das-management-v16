@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+  <data>
+    <record id="view_res_partner_tree" model="ir.ui.view">
+      <field name="name">view.res.partner.tree</field>
+      <field name="model">res.partner</field>
+      <field name="arch" type="xml">
+        <tree string="_tree">
+          <field name="name"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="action_base_res_partner" model="ir.actions.act_window">
+      <field name="name">Partner</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">res.partner</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+  </data>
+</odoo>

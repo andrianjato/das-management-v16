@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <record id="view_das_fictional_tree" model="ir.ui.view">
+      <field name="name">view.das.fictional.tree</field>
+      <field name="model">das.planning</field>
+      <field name="arch" type="xml">
+        <tree string="Fictional" multi_edit="1" sample="1">
+          <field name="resource_id" optional="show"/>
+          <field name="resource_reference" optional="hide"/>
+          <field name="resource_id_active" optional="hide"/>
+          <field name="job" optional="show"/>
+          <field name="account_id" optional="show"/>
+          <field name="type_id" optional="hide"/>
+          <field name="resource_departure_date" class="font-weight-bold" optional="hide"/>
+          <field name="resource_departure_reason" optional="hide"/>
+          <field name="start_date"/>
+          <field name="end_date"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="action_das_fictional" model="ir.actions.act_window">
+      <field name="name">Fictional</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">das.planning</field>
+      <field name="view_mode">tree</field>
+<!--      <field name="domain">[('account_id','=','[fic_project] Fictional project [Fic Account ref]')]</field>-->
+    </record>
+
+  </data>
+</odoo>

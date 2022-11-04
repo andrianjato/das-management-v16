@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+  <templates xml:space="preserve">
+    <t t-extend="GanttView.buttons">
+        <t t-jquery=".o_gantt_button_add" t-operation="after">
+            <button type="button" class="o_gantt_button_fictional btn btn-primary mr-3" title="Add fictional">
+                Generate
+            </button>
+        </t>
+    </t>
+  </templates>
+

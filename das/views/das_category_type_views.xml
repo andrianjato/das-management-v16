@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+  <record id="view_das_planning_category_type_tree" model="ir.ui.view">
+    <field name="name">view.das.planning.category.type.tree</field>
+    <field name="model">das.category.type</field>
+    <field name="arch" type="xml">
+      <tree string="Category Type">
+        <field name="type"/>
+        <field name="is_intercontrat"/>
+        <field name="is_no_counting"/>
+        <field name="description"/>
+      </tree>
+    </field>
+  </record>
+
+  <record id="view_das_planning_category_type_form" model="ir.ui.view">
+    <field name="name">view.das.planning.category.type.form</field>
+    <field name="model">das.category.type</field>
+    <field name="arch" type="xml">
+      <form string="Category Type">
+        <sheet>
+          <div class="oe_button_box" name="button_box">
+            <button class="oe_stat_button" name="get_category_type" type="object" icon="fa-folder"
+                    attrs="{'invisible': [('id', '=', False)]}">
+              <field string="Categories" name="category_count" widget="statinfo"/>
+            </button>
+          </div>
+          <group>
+            <field name="type"/>
+            <field name="is_intercontrat"/>
+            <field name="is_no_counting"/>
+            <field name="description"/>
+          </group>
+        </sheet>
+        <div class="oe_chatter">
+          <field name="message_follower_ids"/>
+          <field name="activity_ids"/>
+          <field name="message_ids"/>
+        </div>
+      </form>
+    </field>
+  </record>
+
+  <record id="action_das_planning_category_type" model="ir.actions.act_window">
+    <field name="name">Das Category Type</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">das.category.type</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+</odoo>

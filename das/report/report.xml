@@ -1,0 +1,42 @@
+<odoo>
+  <record id="das_planning_date_calcul_report_xlsx" model="ir.actions.report">
+        <field name="name">Calcul planning</field>
+        <field name="model">das.planning.date</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">das.calcul_planning_xlsx</field>
+        <field name="report_file">das.calcul_planning_xlsx</field>
+        <field name="binding_model_id" ref="das.model_das_planning_date"/>
+        <field name="binding_type">report</field>
+    </record>
+
+  <record id="das_planning_date_resource_report_xlsx" model="ir.actions.report">
+        <field name="name">Resource</field>
+        <field name="model">das.planning.date</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">das.resource_xlsx</field>
+        <field name="report_file">das.resource_xlsx</field>
+        <field name="binding_model_id" ref="das.model_das_planning_date"/>
+        <field name="binding_type">report</field>
+    </record>
+
+  <record id="das_planning_date_consolidation_report_xlsx" model="ir.actions.report">
+        <field name="name">Consolidation Planning</field>
+        <field name="model">das.planning.date</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">das.consolidation_planning_xlsx</field>
+        <field name="report_file">das.consolidation_planning_xlsx</field>
+        <field name="binding_model_id" ref="das.model_das_planning_date"/>
+        <field name="binding_type">report</field>
+    </record>
+
+  <record id="das_planning_date_Project_report_xlsx" model="ir.actions.report">
+        <field name="name">Project</field>
+        <field name="model">das.planning.date</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">das.project_planning_xlsx</field>
+        <field name="report_file">das.project_planning_xlsx</field>
+        <field name="binding_model_id" ref="das.model_das_planning_date"/>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

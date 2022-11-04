@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+  <record id="view_das_account_reference_tree" model="ir.ui.view">
+    <field name="name">view.das.account.reference.tree</field>
+    <field name="model">das.account.reference</field>
+    <field name="arch" type="xml">
+      <tree string="Account reference">
+        <field name="reference"/>
+        <field name="budget"/>
+        <field name="to_pay_mga"/>
+        <field name="tjm"/>
+        <field name="start_date"/>
+        <field name="end_date"/>
+        <field name="currency_id" invisible="1"/>
+      </tree>
+    </field>
+  </record>
+
+  <record id="view_das_account_reference_form" model="ir.ui.view">
+    <field name="name">view.das.account.reference.form</field>
+    <field name="model">das.account.reference</field>
+    <field name="arch" type="xml">
+      <form string="Account reference">
+        <sheet>
+          <group>
+            <group>
+              <field name="reference"/>
+              <field name="locality_id"/>
+              <field name="category_id"/>
+              <field name="type_id"/>
+              <field name="payment_condition"/>
+            </group>
+            <group>
+              <label for="budget">Budget</label>
+              <div class="o_row">
+                <field name="budget" style="width:30px;"/>
+                <span>j</span>
+              </div>
+              <field name="tjm" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+              <field name="rate_mga"/>
+              <label for="to_pay_mga">To pay mga</label>
+              <div class="o_row">
+                <field name="to_pay_mga"/>
+                <span>Ar</span>
+              </div>
+              <field name="currency_id" invisible="1"/>
+              <field name="start_date"/>
+              <field name="end_date"/>
+            </group>
+          </group>
+        </sheet>
+        <div class="oe_chatter">
+          <field name="message_follower_ids"/>
+          <field name="activity_ids"/>
+          <field name="message_ids"/>
+        </div>
+      </form>
+    </field>
+  </record>
+
+  <record id="action_das_account_reference" model="ir.actions.act_window">
+    <field name="name">Account Reference</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">das.account.reference</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+</odoo>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+  <record id="view_hr_employee_inherit" model="ir.ui.view">
+    <field name="name">view.hr.employee.inherit</field>
+    <field name="model">hr.employee</field>
+    <field name="inherit_id" ref="hr.view_employee_form"/>
+    <field name="arch" type="xml">
+      <xpath expr="//button[@id='hr_presence_button']" position="before">
+        <button class="oe_stat_button" name="get_resource_planning" type="object" icon="fa-calendar"
+                attrs="{'invisible': [('id', '=', False)]}">
+          <field string="Plannings" name="planning_count" widget="statinfo"/>
+        </button>
+      </xpath>
+    </field>
+  </record>
+
+</odoo>

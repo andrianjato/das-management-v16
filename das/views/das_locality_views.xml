@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+  <record id="view_das_planning_locality_tree" model="ir.ui.view">
+    <field name="name">view.das.planning.locality.tree</field>
+    <field name="model">das.locality</field>
+    <field name="arch" type="xml">
+      <tree string="Locality">
+        <field name="locality"/>
+        <field name="description"/>
+      </tree>
+    </field>
+  </record>
+
+  <record id="view_das_planning_locality_form" model="ir.ui.view">
+    <field name="name">view.das.planning.locality.form</field>
+    <field name="model">das.locality</field>
+    <field name="arch" type="xml">
+      <form string="Locality">
+        <sheet>
+          <div class="oe_button_box" name="button_box">
+            <button class="oe_stat_button" name="get_reference_account_locality" type="object" icon="fa-folder"
+                    attrs="{'invisible': [('id', '=', False)]}">
+              <field string="Locality" name="reference_account_count" widget="statinfo"/>
+            </button>
+          </div>
+          <group>
+            <field name="locality"/>
+            <field name="description"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record id="action_das_planning_locality" model="ir.actions.act_window">
+    <field name="name">Das Locality</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">das.locality</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+</odoo>

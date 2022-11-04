@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+  <data>
+
+    <record id="view_das_hr_job_type_tree" model="ir.ui.view">
+      <field name="name">view.das.hr.job.type.tree</field>
+      <field name="model">hr.job.type</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="type"/>
+          <field name="description"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="view_das_hr_job_type_form" model="ir.ui.view">
+      <field name="name">view.das.hr.job.type.form</field>
+      <field name="model">hr.job.type</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <field name="type"/>
+              <field name="description"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="action_das_hr_job_type" model="ir.actions.act_window">
+      <field name="name">Job type</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">hr.job.type</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_das_hr_job_type"
+              name="Job type"
+              parent="hr.menu_human_resources_configuration"
+              action="action_das_hr_job_type"
+              sequence="1"/>
+
+  </data>
+</odoo>

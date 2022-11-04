@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+  <!--   Analyse view form -->
+  <record id="view_das_analysis_form" model="ir.ui.view">
+    <field name="name">view.das.analysis.form</field>
+    <field name="model">das.analysis</field>
+    <field name="arch" type="xml">
+      <form string="Analyse">
+        <sheet>
+          <div class="row">
+            <div class="col-3" style="width:100%"></div>
+            <div class="col-7">
+              <group>
+                <group>
+                  <h4>
+                    <label for="department_id" style="font-size:40"/>
+                    <field name="department_id"/>
+                  </h4>
+                </group>
+                <group>
+                  <h4>
+                    <label for="start_date" string="Date"/>
+                    <field name="start_date" widget="daterange"
+                           options='{"related_end_date": "end_date"}'/>
+                    <i class="fa fa-long-arrow-right mx-1" aria-label="Arrow icon" title="Arrow"/>
+                    <field name="end_date" widget="daterange"
+                           options='{"related_start_date": "start_date"}'/>
+                  </h4>
+                </group>
+              </group>
+            </div>
+            <div class="col-2" style="width:100%"></div>
+          </div>
+          <div class="row">
+            <div class="col-4" style="width:100%"></div>
+            <div class="col-4">
+              <h1>
+                <button name="compute_analyse_pdo" string="Analyser" type="object"/>
+              </h1>
+            </div>
+            <div class="col-4"></div>
+          </div>
+          <div class="row">
+            <group>
+              <group>
+                <field name="tot_account"/>
+                <field name="total_hours"/>
+              </group>
+              <group>
+                <field name="tot_account_fact"/>
+                <field name="total_hours_fact"/>
+              </group>
+            </group>
+          </div>
+          <div class="row">
+            <group>
+              <group>
+                <field name="analyse"/>
+              </group>
+              <group>
+                <h6>
+                  <field name="productivity"/>
+                </h6>
+              </group>
+            </group>
+          </div>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <!--  <record id="view_das_analyse_graph" model="ir.ui.view">-->
+  <!--    <field name="name">view.das.analyse.graph</field>-->
+  <!--    <field name="model">das.analyse</field>-->
+  <!--    <field name="arch" type="xml">-->
+  <!--      <graph string="Analyse" sample="1">-->
+  <!--        <field name="department_id"/>-->
+  <!--        <field name="list_account_ids"/>-->
+  <!--        <field name="total_hours"/>-->
+  <!--        <field name="tot_project"/>-->
+  <!--        <field name="tot_project_fact"/>-->
+  <!--        <field name="analyse"/>-->
+  <!--        <field name="productivity"/>-->
+  <!--      </graph>-->
+  <!--    </field>-->
+  <!--  </record>-->
+
+  <!-- Productivity action-->
+  <record id="action_das_planning_analysis" model="ir.actions.act_window">
+    <field name="name">Analyse</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">das.analysis</field>
+    <field name="view_mode">form</field>
+  </record>
+</odoo>

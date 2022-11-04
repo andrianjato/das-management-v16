@@ -1,0 +1,15 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_das_category,access.das.category,model_das_category,,1,1,1,1
+access_das_category_type,access.das.category.type,model_das_category_type,,1,1,1,1
+access_das_locality,access.das.locality,model_das_locality,,1,1,1,1
+access_das_account,access.das.account,model_das_account,,1,1,1,1
+access_das_account_reference,access.das.account.reference,model_das_account_reference,,1,1,1,1
+access_das_planning,access.das.planning,model_das_planning,,1,1,1,1
+access_das_fictional_batch,access.das.fictional.batch,model_das_fictional_batch,,1,1,1,1
+access_das_planning_date,access.das.planning.date,model_das_planning_date,,1,0,0,0
+access_das_analysis,access.das.analysis,model_das_analysis,,1,1,1,1
+access_planning_division_wizard,access.planning.division.wizard,model_planning_division_wizard,,1,1,1,1
+access_availability_filter_wizard,access.availability.filter.wizard,model_availability_filter_wizard,,1,1,1,1
+access_res_availability,access.res.availability,model_res_availability,,1,0,0,0
+access_planning_fictional_wizard,access.planning.fictional.wizard,model_planning_fictional_wizard,,1,1,1,1
+

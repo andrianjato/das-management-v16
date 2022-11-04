@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+  <record id="view_das_planning_category_tree" model="ir.ui.view">
+    <field name="name">view.das.planning.category.tree</field>
+    <field name="model">das.category</field>
+    <field name="arch" type="xml">
+      <tree string="Category">
+        <field name="category_project"/>
+        <field name="type_id"/>
+        <field name="color" widget="color_picker"/>
+      </tree>
+    </field>
+  </record>
+
+  <record id="view_das_planning_category_form" model="ir.ui.view">
+    <field name="name">view.das.planning.category.form</field>
+    <field name="model">das.category</field>
+    <field name="arch" type="xml">
+      <form string="Category">
+        <sheet>
+          <div class="oe_button_box" name="button_box">
+            <button class="oe_stat_button" name="get_category_account" type="object" icon="fa-folder"
+                    attrs="{'invisible': [('id', '=', False)]}">
+              <field string="Accounts" name="account_count" widget="statinfo"/>
+            </button>
+          </div>
+          <group>
+            <group>
+              <field name="category_project"/>
+            </group>
+            <group>
+              <field name="type_id"/>
+              <field name="color" widget="color_picker"/>
+            </group>
+          </group>
+        </sheet>
+        <div class="oe_chatter">
+          <field name="message_follower_ids"/>
+          <field name="activity_ids"/>
+          <field name="message_ids"/>
+        </div>
+      </form>
+    </field>
+  </record>
+
+  <record id="action_das_planning_category" model="ir.actions.act_window">
+    <field name="name">Das Category</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">das.category</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+</odoo>
