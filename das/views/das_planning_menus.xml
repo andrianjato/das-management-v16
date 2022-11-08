@@ -47,11 +47,11 @@
               parent="menu_das_planning_root"
               sequence="25"/>
 
-     <menuitem id="menu_das_config_settings"
-               name="Settings"
-               parent="menu_das_planning_configuration"
-               sequence="0"
-               action="action_das_config_settings"/>
+    <menuitem id="menu_das_config_settings"
+              name="Settings"
+              parent="menu_das_planning_configuration"
+              sequence="0"
+              action="action_das_config_settings"/>
 
     <menuitem id="menu_das_planning_account"
               name="Account"
@@ -82,7 +82,7 @@
               parent="menu_das_planning_configuration"
               action="das.action_das_account_reference"
               sequence="29"/>
-<menuitem id="menu_das_fictional_batch"
+    <menuitem id="menu_das_fictional_batch"
               name="Fictional Batch"
               parent="menu_das_planning_configuration"
               action="das.action_das_fictional_batch"

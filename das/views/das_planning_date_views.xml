@@ -116,35 +116,35 @@
       </field>
     </record>
 
-    <record id="view_das_planning_date_dashboard" model="ir.ui.view">
-      <field name="name">view.das.planning.date.dashboard</field>
-      <field name="model">das.planning.date</field>
-      <field name="mode">primary</field>
-      <field name="arch" type="xml">
-        <dashboard sample="1">
-          <group>
-            <aggregate name="resources" string="Resource" field="total_resource" group_operator="max"/>
-            <aggregate name="nb_working_days" string="Nb working Date" field="date_timestamp"
-                       group_operator="count_distinct"/>
-            <formula name="capacity_days" string="Capacity in days"
-                     value="record.resources * record.nb_working_days"/>
-            <formula name="billable_goal" string="Billable Goal"
-                     value="" value_label=""/>
-            <aggregate name="total_billable_days" string="Total billable days" field="id" group_operator="count"
-                       domain="[('planning_id.account_id.type_id', '=', 'FAC')]"/>
-            <formula name="to_fill_days" string="To fill days"
-                     value=""/>
-            <aggregate name="intercontract_days" string="Intercontract days" field="id" group_operator="count"
-                       domain="[('is_intercontrat', '=', True)]" value_label=""/>
-          </group>
-          <group>
-            <group>
-              <view type="graph" ref="das.view_das_planning_date_graph"/>
-            </group>
-          </group>
-        </dashboard>
-      </field>
-    </record>
+<!--    <record id="view_das_planning_date_dashboard" model="ir.ui.view">-->
+<!--      <field name="name">view.das.planning.date.dashboard</field>-->
+<!--      <field name="model">das.planning.date</field>-->
+<!--      <field name="mode">primary</field>-->
+<!--      <field name="arch" type="xml">-->
+<!--        <dashboard sample="1">-->
+<!--          <group>-->
+<!--            <aggregate name="resources" string="Resource" field="total_resource" group_operator="max"/>-->
+<!--            <aggregate name="nb_working_days" string="Nb working Date" field="date_timestamp"-->
+<!--                       group_operator="count_distinct"/>-->
+<!--            <formula name="capacity_days" string="Capacity in days"-->
+<!--                     value="record.resources * record.nb_working_days"/>-->
+<!--            <formula name="billable_goal" string="Billable Goal"-->
+<!--                     value="" value_label=""/>-->
+<!--            <aggregate name="total_billable_days" string="Total billable days" field="id" group_operator="count"-->
+<!--                       domain="[('planning_id.account_id.type_id', '=', 'FAC')]"/>-->
+<!--            <formula name="to_fill_days" string="To fill days"-->
+<!--                     value=""/>-->
+<!--            <aggregate name="intercontract_days" string="Intercontract days" field="id" group_operator="count"-->
+<!--                       domain="[('is_intercontrat', '=', True)]" value_label=""/>-->
+<!--          </group>-->
+<!--          <group>-->
+<!--            <group>-->
+<!--              <view type="graph" ref="das.view_das_planning_date_graph"/>-->
+<!--            </group>-->
+<!--          </group>-->
+<!--        </dashboard>-->
+<!--      </field>-->
+<!--    </record>-->
 
     <record id="view_das_planning_date_filter" model="ir.ui.view">
       <field name="name">view.das.planning.date.filter</field>
@@ -170,7 +170,7 @@
       <field name="type">ir.actions.act_window</field>
       <field name="res_model">das.planning.date</field>
       <field name="context">{"search_default_date_current_month":1}</field>
-      <field name="view_mode">tree,pivot,gantt,dashboard</field>
+      <field name="view_mode">tree,pivot,gantt</field>
     </record>
 
     <record id="action_das_planning_date_intercontrat" model="ir.actions.act_window">
@@ -181,13 +181,13 @@
       <field name="view_mode">gantt</field>
     </record>
 
-    <record id="action_das_planning_date_dashboard" model="ir.actions.act_window">
-      <field name="name">Intercontract</field>
-      <field name="type">ir.actions.act_window</field>
-      <field name="res_model">das.planning.date</field>
-      <field name="context">{"search_default_date_current_month":1}</field>
-      <field name="view_mode">dashboard</field>
-    </record>
+<!--    <record id="action_das_planning_date_dashboard" model="ir.actions.act_window">-->
+<!--      <field name="name">Intercontract</field>-->
+<!--      <field name="type">ir.actions.act_window</field>-->
+<!--      <field name="res_model">das.planning.date</field>-->
+<!--      <field name="context">{"search_default_date_current_month":1}</field>-->
+<!--      <field name="view_mode">dashboard</field>-->
+<!--    </record>-->
 
   </data>
 </odoo>

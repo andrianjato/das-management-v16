@@ -7,7 +7,7 @@
     <field name="inherit_id" ref="project.edit_project"/>
     <field name="arch" type="xml">
 
-      <xpath expr="//button[@name='attachment_tree_view']" position="before">
+      <xpath expr="//div[@class='oe_button_box']" position="inside">
         <button class="oe_stat_button" name="get_project_account" type="object" icon="fa-folder">
           <field string="Accounts" name="account_count" widget="statinfo"/>
         </button>
@@ -19,10 +19,10 @@
   <record id="view_view_project_inherit" model="ir.ui.view">
     <field name="name">view.view.project.inherit</field>
     <field name="model">project.project</field>
-    <field name="inherit_id" ref="project.view_project"/>
+    <field name="inherit_id" ref="project.edit_project"/>
     <field name="arch" type="xml">
 
-      <xpath expr="//field[@name='name']" position="before">
+      <xpath expr="//field[@name='label_tasks']" position="before">
         <field name="key"/>
       </xpath>
 

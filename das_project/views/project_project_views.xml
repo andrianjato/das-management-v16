@@ -6,12 +6,6 @@
     <field name="model">project.project</field>
     <field name="inherit_id" ref="project.edit_project"/>
     <field name="arch" type="xml">
-
-      <xpath expr="//field[@name='user_id']" position="before">
-        <h3>
-          <field name="key" placeholder="Project Key"/>
-        </h3>
-      </xpath>
       <xpath expr="//sheet" position="after">
         <div class="oe_chatter">
           <field name="message_follower_ids"/>

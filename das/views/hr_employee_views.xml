@@ -6,7 +6,7 @@
     <field name="model">hr.employee</field>
     <field name="inherit_id" ref="hr.view_employee_form"/>
     <field name="arch" type="xml">
-      <xpath expr="//button[@id='hr_presence_button']" position="before">
+      <xpath expr="//div[@class='oe_button_box']" position="before">
         <button class="oe_stat_button" name="get_resource_planning" type="object" icon="fa-calendar"
                 attrs="{'invisible': [('id', '=', False)]}">
           <field string="Plannings" name="planning_count" widget="statinfo"/>

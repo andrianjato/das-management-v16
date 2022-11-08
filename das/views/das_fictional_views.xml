@@ -13,7 +13,7 @@
           <field name="account_id" optional="show"/>
           <field name="type_id" optional="hide"/>
           <field name="resource_departure_date" class="font-weight-bold" optional="hide"/>
-          <field name="resource_departure_reason" optional="hide"/>
+          <field name="resource_departure_reason_id" optional="hide"/>
           <field name="start_date"/>
           <field name="end_date"/>
         </tree>
