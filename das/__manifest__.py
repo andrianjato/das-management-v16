@@ -32,7 +32,7 @@ DAS Management
         'views/hr_employee_views.xml',
         'views/project_project_views.xml',
         'views/das_planning_menus.xml',
-        'report/report.xml'
+        # 'report/report.xml'
     ],
     'qweb': [
         "static/src/xml/*.xml",

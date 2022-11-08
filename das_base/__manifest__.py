@@ -8,7 +8,7 @@
 DAS Base  
 ========
 """,
-    'depends': ['base', 'hr', 'project', 'report_xlsx', 'web', 'web_gantt'],
+    'depends': ['base', 'hr', 'project', 'web', 'web_gantt'],
     'data': [
         'security/ir.model.access.csv',
         'views/res_partner_views.xml'
