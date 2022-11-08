@@ -15,7 +15,7 @@
         <field name="name_jira"/>
       </xpath>
       <xpath expr="//field[@name='job_title']" position="replace">
-        <field name="job_id" widget="many2many_tags" placeholder="Job"/>
+        <field name="job_id" placeholder="Job"/>
       </xpath>
       <xpath expr="//field[@name='department_id']" position="before">
         <field name="reference"/>
