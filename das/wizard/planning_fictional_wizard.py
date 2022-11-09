@@ -39,18 +39,18 @@ class PlanningFictionalWizard(models.TransientModel):
                 date_list.append(date_from)
             date_from += timedelta(days=1)
 
+        account_id = self.env['das.account'].sudo().search(
+            [('reference', '=', '[fic_project] Fictional project [Fic Account ref]')]).id
         for res in self.resource_ids.mapped('id'):
-            account_id = self.env['das.account'].sudo().search(
-                [('reference', '=', '[fic_project] Fictional project [Fic Account ref]')]).id
-        for date_to_plan in date_list:
-            if not planing_date.search(
-                    [('resource_id', '=', resource_id.browse(res).id), ('date', '=', date_to_plan),
-                     ('account_id', '=', account_id)]):
-                total_daily_hours = sum(self.env['das.planning.date'].search(
-                    [('resource_id', '=', resource_id.browse(res).id), ('date', '=', date_to_plan)]).mapped(
-                    'daily_hours'))
-                self.env['das.planning'].sudo().create(
-                    {'resource_id': resource_id.browse(res).id,
-                     'account_id': account_id,
-                     'daily_hours': 8 - total_daily_hours,
-                     'start_date': date_to_plan, 'end_date': date_to_plan})
+            for date_to_plan in date_list:
+                if not planing_date.search(
+                        [('resource_id', '=', resource_id.browse(res).id), ('date', '=', date_to_plan),
+                         ('account_id', '=', account_id)]):
+                    total_daily_hours = sum(self.env['das.planning.date'].search(
+                        [('resource_id', '=', resource_id.browse(res).id), ('date', '=', date_to_plan)]).mapped(
+                        'daily_hours'))
+                    self.env['das.planning'].sudo().create(
+                        {'resource_id': resource_id.browse(res).id,
+                         'account_id': account_id,
+                         'daily_hours': 8 - total_daily_hours,
+                         'start_date': date_to_plan, 'end_date': date_to_plan})
