@@ -39,7 +39,8 @@ DAS Management
     ],
     'assets': {
         'web.assets_backend': [
-            'das/static/src/js/*',
+            'das/static/src/**/*',
+            'das/static/src/xml/**/*',
         ],
     },
     'installable': True,
