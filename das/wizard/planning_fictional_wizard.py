@@ -35,7 +35,7 @@ class PlanningFictionalWizard(models.TransientModel):
         date_to = self.end_date
         date_list = []
         while date_from <= date_to:
-            if date_from.weekday() < 5 and date_from not in date_planned:
+            if date_from.weekday() < 5:
                 date_list.append(date_from)
             date_from += timedelta(days=1)
 
