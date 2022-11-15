@@ -21,8 +21,8 @@
           <field name="date" class="font-weight-bold" optional="show"/>
           <field name="is_global_leave" optional="hide"/>
           <field name="daily_hours" optional="show"/>
-          <field name="available_hour" optional="hide"/>
-          <field name="available_day" optional="show"/>
+<!--          <field name="available_hour" optional="hide"/>-->
+<!--          <field name="available_day" optional="show"/>-->
           <field name="type_id" optional="hide"/>
           <field name="is_intercontrat" optional="hide"/>
           <field name="is_no_counting" optional="hide"/>
@@ -52,7 +52,6 @@
           <field name="department_id"/>
           <field name="planning_id"/>
           <field name="daily_hours"/>
-          <field name="available_day"/>
           <field name="account_id"/>
           <field name="project_id"/>
           <field name="task_id"/>
@@ -61,8 +60,8 @@
           <field name="hours_not_planned"/>
           <field name="req"/>
           <field name="jreq"/>
-          <field name="available_hour"/>
-          <field name="available_day"/>
+<!--          <field name="available_hour"/>-->
+<!--          <field name="available_day"/>-->
           <field name="date"/>
         </pivot>
       </field>

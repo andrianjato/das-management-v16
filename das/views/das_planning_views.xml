@@ -67,6 +67,10 @@
                   <field name="total_hours"/>
                   <span>h</span>
                 </div>
+                <label for="is_no_counting">Is no counting</label>
+                <div class="o_row">
+                  <field name="is_no_counting"/>
+                </div>
               </group>
             </group>
             <div class="text-right">

@@ -33,11 +33,12 @@ class DasPlanning(models.Model):
     color = fields.Integer(related='account_id.category_id.color', store=True)
     planning_date = fields.One2many('das.planning.date', inverse_name='planning_id', string="Date Planning")
 
-    project_id = fields.Many2one('project.project', string='Project', related='account_id.project_id', readonly="True")
+    project_id = fields.Many2one('project.project', string='Project', related='account_id.project_id', readonly=True)
     task_id = fields.Many2one('project.task', string='Task', tracking=True)
 
     globals_leaves_ids = fields.One2many(string="Global leave of current month",
                                          related='resource_id.resource_calendar_id.global_leave_ids')
+    is_no_counting = fields.Boolean(string="Is no counting", related='account_id.type_id.is_no_counting', readonly=True)
 
     @api.onchange("project_id")
     def _set_project_domains(self):
@@ -73,18 +74,19 @@ class DasPlanning(models.Model):
         for planning in self:
             planning.date_delta = (planning.end_date - planning.start_date).days + 1
 
-    @api.onchange('daily_hours')
+    @api.onchange('daily_hours', 'account_id', 'account_id.type_id.is_no_counting')
     def _check_daily_hours(self):
         """Check immediately (onchange) a valid daily working hours"""
         for planning in self:
-            if not 0 <= planning.daily_hours <= 8:
+            if self.account_id and not self.account_id.type_id.is_no_counting and not 0 <= planning.daily_hours <= 8:
                 planning.daily_hours = 8
                 return {'warning': {
                     'title': 'Value Error',
                     'message': _("Sorry, Daily working hours is between 0 to 8 !"),
                 }}
 
-    @api.onchange('resource_id', 'start_date', 'end_date', 'daily_hours')
+    @api.onchange('resource_id', 'account_id', 'account_id.type_id.is_no_counting', 'start_date', 'end_date',
+                  'daily_hours')
     def _check_planning_existence(self):
         date = self.start_date
         if date:
@@ -98,7 +100,7 @@ class DasPlanning(models.Model):
 
             for planning in self:
                 new_hour_limit = 8 - max(total_daily_hours)
-                if not 0 <= planning.daily_hours <= new_hour_limit:
+                if self.account_id and not self.account_id.type_id.is_no_counting and not 0 <= planning.daily_hours <= new_hour_limit:
                     planning.daily_hours = new_hour_limit
                     return {'warning': {
                         'title': 'Attention',
@@ -115,8 +117,9 @@ class DasPlanning(models.Model):
         while date <= planning_max_date:
             planning_days_hours = resource_plannings.filtered(lambda p: p.start_date <= date <= p.end_date).mapped(
                 'daily_hours')
-            if sum(planning_days_hours) > 8:
-                raise ValidationError(_('Daily working hours must be inferior to 8 !'))
+            if not self.account_id.type_id.is_no_counting and sum(
+                    planning_days_hours) > 8 or not self.account_id.type_id.is_no_counting and self.daily_hours == 0:
+                raise ValidationError(_('Daily working hours must be between 0 to 8 !'))
             date += timedelta(days=1)
 
     def create_planning_date(self):

@@ -17,6 +17,17 @@
     </field>
   </record>
 
+  <record id="view_tree_project_inherit" model="ir.ui.view">
+    <field name="name">view.tree.project.inherit</field>
+    <field name="model">project.project</field>
+    <field name="inherit_id" ref="project.view_project"/>
+    <field name="arch" type="xml">
+      <xpath expr="//field[@name='display_name']" position="after">
+        <field name="key"/>
+      </xpath>
+    </field>
+  </record>
+
   <menuitem id="menu_das_planning_partner"
             name="Partner"
             parent="project.menu_project_config"

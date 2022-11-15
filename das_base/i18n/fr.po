@@ -3967,13 +3967,13 @@ msgstr "Obtenir des retours client"
 #. module: das
 #: model:ir.model.fields,field_description:das.field_das_planning_date__is_global_leave
 msgid "Global leave"
-msgstr ""
+msgstr "Jour férié"
 
 #. module: das
 #: model:ir.model.fields,field_description:das.field_das_planning__globals_leaves_ids
 #: model:ir.model.fields,field_description:das.field_das_planning_date__globals_leaves_ids
 msgid "Global leave of current month"
-msgstr ""
+msgstr "Jours fériés du mois"
 
 #. module: hr
 #: model:ir.model.fields.selection,name:hr.selection__hr_employee__certificate__graduate
@@ -4628,7 +4628,7 @@ msgstr "Est une entreprise"
 #: model:ir.model.fields,field_description:das.field_das_category_type__is_intercontrat
 #: model:ir.model.fields,field_description:das.field_das_planning_date__is_intercontrat
 msgid "Is intercontrat"
-msgstr ""
+msgstr "Est intercontrat"
 
 #. module: das
 #: model:ir.model.fields,field_description:das.field_das_category_type__is_no_counting
